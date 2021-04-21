@@ -1,10 +1,11 @@
 # Unity Project: Still uncertain racing game
 
-## how to use git:
+## How to use git:
 
 Note: These instructions use git from the command line. If you're on windows,
 you should install [git bash](https://gitforwindows.org/). On Linux or Mac git should work
-in the default terminal.
+in the default terminal. There are several graphical interfaces for git, if command line doesn't
+suit you feel free to use them.
 
 Clone this repository to your local machine
 
@@ -39,7 +40,7 @@ Then other contributers can have a look at your changes before merging them into
 
 If you have any further questions regarding working with git, just hit me up
 
-## current state of this project
+## Current state of this project
 
 I created an empty unity project and added some directories and meta files for future structuring according to the
 [example repository](https://github.com/Westdrive-Workgroup/Corona-Chaos). I guess we should meet again and discuss
