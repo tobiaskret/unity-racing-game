@@ -14,7 +14,7 @@ public class AxleInfo
     public bool steering; // does this wheel apply steer angle?
 }
 
-public class CarBehaviour : MonoBehaviour
+public class CarController : MonoBehaviour
 {
     public List<AxleInfo> axleInfos; // the information about each individual axle
     public float maxMotorTorque; // maximum torque the motor can apply to wheel
@@ -86,5 +86,6 @@ public class CarBehaviour : MonoBehaviour
         game_object.transform.rotation = rotation; // * Quaternion.Euler(Vector3.right * 90);
 
     }
+
 
 }
