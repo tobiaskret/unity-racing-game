@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
 [System.Serializable]
 public class AxleInfo
 {
@@ -12,7 +12,7 @@ public class AxleInfo
     public GameObject rightWheelObject;
     public bool motor; // is this wheel attached to motor?
     public bool steering; // does this wheel apply steer angle?
-}
+}*/
 
 public class CarController : MonoBehaviour
 {
