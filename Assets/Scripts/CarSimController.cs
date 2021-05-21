@@ -65,7 +65,7 @@ public class CarSimController : MonoBehaviour
     }
 
     // correctly applies the transform to visual wheel
-    public void ApplyLocalPositionToVisuals(WheelCollider collider, GameObject game_object)
+    void ApplyLocalPositionToVisuals(WheelCollider collider, GameObject game_object)
     {
         Vector3 position;
         Quaternion rotation;
@@ -74,6 +74,59 @@ public class CarSimController : MonoBehaviour
         game_object.transform.position = position;
         game_object.transform.rotation = rotation; // * Quaternion.Euler(Vector3.right * 90);
 
+    }
+    
+
+    public List<float> EnvironmentPerception()
+    {
+        bool show_rays = true;
+        int ray_length = 100;
+        List<float> perception_list = new List<float> { 0, 0, 0 };
+
+        RaycastHit hitL;
+        bool left_ray = Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(-0.5f, 0f, 1f)), out hitL, ray_length);
+        perception_list[0] = (ray_length - hitL.distance) / ray_length;
+
+        RaycastHit hitC;
+        bool center_ray = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitC, ray_length);
+        perception_list[1] = (ray_length - hitC.distance) / ray_length;
+
+        RaycastHit hitR;
+        bool right_ray = Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, 0f, 1f)), out hitR, ray_length);
+        perception_list[2] = (ray_length - hitR.distance) / ray_length;
+        //Debug.Log(perception_list[1]);
+
+        if (show_rays)
+        {
+            if (left_ray)
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(-0.5f, 0f, 1f)) * hitL.distance, Color.red);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(-0.5f, 0f, 1f)) * ray_length, Color.green);
+            }
+
+            if (center_ray)
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitC.distance, Color.red);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * ray_length, Color.green);
+            }
+
+            if (right_ray)
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0.5f, 0f, 1f)) * hitR.distance, Color.red);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0.5f, 0f, 1f)) * ray_length, Color.green);
+            }
+        }
+
+        return perception_list;
     }
 
     // destroy this cars gameobject
